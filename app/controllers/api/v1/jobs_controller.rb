@@ -3,9 +3,8 @@ module Api
     class JobsController < ApplicationController
       def search
         jobs_search = JobsSearch.new(jobs_params)
-        jobs = jobs_search.search
-
-        render json: { jobs: jobs }, status: 200
+        jobs = jobs_search.search.preload(:features, :company, :prefecture)
+        render json: jobs, each_serializer: JobSerializer
       end
 
       private

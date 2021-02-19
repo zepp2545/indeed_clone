@@ -13,6 +13,7 @@ class JobsSearch
     jobs = Job.all
     jobs = Job.where('title LIKE ? OR description LIKE ?', keyword, keyword) if keyword.present?
     jobs = jobs.where('location_detail LIKE ? OR prefecture_id = ?', location, Prefecture.find_by(name: location)&.id) if location.present?
+    jobs
   end
 
 end
