@@ -1,6 +1,8 @@
 module Api
   module V1
     class JobsController < ApplicationController
+      before_action :wait
+
       def search
         jobs_search = JobsSearch.new(jobs_params)
         jobs = jobs_search.search.preload(:features, :company, :prefecture)
@@ -11,6 +13,10 @@ module Api
 
       def jobs_params
         params.permit(JobsSearch::ARRAY_FIELDS)
+      end
+
+      def wait
+        sleep 1
       end
     end
   end

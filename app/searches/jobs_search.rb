@@ -10,9 +10,9 @@ class JobsSearch
   ARRAY_FIELDS.each {|f| attribute f, :string }
 
   def search
-    jobs = Job.all
+    jobs = Job.all.joins(:prefecture)
     jobs = Job.where('title LIKE ? OR description LIKE ?', keyword, keyword) if keyword.present?
-    jobs = jobs.where('location_detail LIKE ? OR prefecture_id = ?', location, Prefecture.find_by(name: location)&.id) if location.present?
+    jobs = jobs.where('jobs.location_detail LIKE ? OR prefectures.name LIKE ?', "%#{location}%",  "#{location}%") if location.present?
     jobs
   end
 
