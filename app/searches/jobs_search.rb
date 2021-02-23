@@ -11,7 +11,7 @@ class JobsSearch
 
   def search
     jobs = Job.all
-    jobs = Job.where('title LIKE ? OR description LIKE ?', keyword, keyword) if keyword.present?
+    jobs = Job.where('title LIKE ? OR description LIKE ?', "%#{keyword}%", "%#{keyword}%") if keyword.present?
     jobs = jobs.joins(:prefecture).where('jobs.location_detail LIKE ? OR prefectures.name LIKE ?', "%#{location}%", "#{location}%") if location.present?
     jobs
   end

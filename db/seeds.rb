@@ -5,10 +5,59 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+DESCRIPTION = "EARN $100,000- $300,000 ANNUALLY+\n\n
 
-15.times do |index|
+The solar industry is booming, and so are we! Sunpro Solar is currently seeking Solar Sales Specialists with positive energy to ensure that we align our customers with green energy that best meets their individual needs while adding value to their home.\n\n
+
+As a premier renewable energy company, Sunpro Solar is changing how consumers energize their homes and businesses. Solar energy isn't a 'one-size-fits-all' power source. Through our in-house energy assessments and inspections, we can educate our customers on making their homes more energy-efficient while saving as much money as possible on utility bills.\n\n
+
+Due to our stellar customer service and high-quality products, Sunpro Solar is the fastest-growing solar company in the Gulf Coast Region, with offices in 60 cities in 16states. We are expanding across the nation. Join our award-winning sales team & grow with us. There is excellent potential for advancement.\n\n
+
+What's in it for you:\n
+An industry-leading high paying commission plan\n
+Medical, dental, and vision benefits after only60 days\n
+401K with company match after six months\n
+A monthly car allowance and fuel card while you're waiting for a company car\n
+The tools needed to perform the job, such as company iPad, printer, referral app, shirts, & an entire marketing team on staff\n
+An industry-leading, month-long, paid training program\n
+Work schedule flexibility\n
+A call center that works on generating leads and hefty bonuses for all self-generated leads\n
+A complete support team to help ensure your success\n
+No cap on earnings\n\n
+
+What you'll do:\n
+Become a specialist in renewable energy\n
+Network and look for opportunities for engagement to build a client base\n
+Educate potential and existing customers on Sunpro Solar's clean energy solutions and ways to save money\n
+Confidently discuss options and close contracts\n
+Participate in the company led events to generate sales\n\n
+
+What you'll need:\n
+At least 2 years of outside sales experience\n
+A current, valid driver's license, clean driving record, and reliable transportation\n
+A cell phone (preferably a smartphone)\n
+Ability to pass a pre-employment background check & drug screen\n
+A customer-centric, friendly, and self-motivated attitude\n
+Excellent communication skills, both written and orally, with customers and office staff\n
+A flexible schedule that allows for some evening & weekend appointments\n
+A highly persuasive, self-disciplined & honest work ethic\n
+
+Our current Solar Sales Specialists who have a strong work ethic and are self-motivated, positive, dedicated, and have flexible working schedules make between$100K-300K annually!\n\n
+
+If you want to work with an outstanding team of professionals that believes in family, community, green, renewable energy, then join Sunpro Solar. We are making a positive difference in people's lives and improving the environment, one install at a time.\n\n
+
+If interested, visitwww.gosunpro.com to learn more about Sunpro Solar and The Pro Companies and apply for a position at one of our many locations.\n\n
+
+Founded in 2008, Sunpro Solar is one of the leading providers of rooftop solar in the United States. Sunpro Solar designs, install, and maintain solar panels on residential and commercial properties. Sunpro Solar has a proven history and reputation for providing quality service and is ranked 5th Largest Residential Solar Contractor in the nation.\n\n
+
+The selected candidate must pass a background check.\n\n
+
+Applications will remain active for 60 days."
+
+
+50.times do |index|
   Company.create(
-    name: "Company_#{index}"
+    name: "会社サンプル#{index}"
   )
 end
 
@@ -40,18 +89,50 @@ Feature.create(name: "アルバイト")
 Feature.create(name: "高収入")
 Feature.create(name: "交通支給")
 Feature.create(name: "急募")
+Feature.create(name: "パート")
+Feature.create(name: "経験者優遇")
+Feature.create(name: "業務委託")
 
-40.times do |index|
+JOB_TITLE = [
+  'ITサポートエンジニア',
+  'フロントエンジニア',
+  'システムエンジニア',
+  'バックエンドエンジニア',
+  'Reactエンジニア',
+  'Vueエンジニア',
+  'Railsエンジニア',
+  'Pythonエンジニア',
+  'PHPエンジニア',
+  'プロジェクトマネージャー',
+  'ジュニアプログラマー',
+  'インフラエンジニア',
+  'プログラミング講師',
+  'WordPress Web制作',
+]
+
+400.times do |index|
   job = Job.create(
-    title: "job_title_#{index}",
-    company_id: Company.find(rand(1..15)).id,
-    prefecture_id: Prefecture.find(rand(1..47)).id,
+    title: JOB_TITLE[rand(0..(JOB_TITLE.size - 1))],
+    company_id: Company.order("RANDOM()").first.id,
+    prefecture_id: Prefecture.order("RANDOM()").first.id,
     location_detail: "location_#{index}",
-    description: "fjslajlfjlsajl;fj;sjaj;f\nsja;jfjsa;lsjlf;lsaj;fljl;safkjsja\n\nslaljfjlsajfs;jajl;fjlslalfjsioeionfsalf\nljsaljflsajlsjaljsla"
+    description: DESCRIPTION
   )
 
-  FeatureJob.create(job_id: job.id, feature_id: Feature.find(rand(1..5)).id)
+  FeatureJob.create(job_id: job.id, feature_id: Feature.order("RANDOM()").first.id)
 
 end
+
+
+# order is important otherwise it'll cause error
+# Job.destroy_all
+# Application.destroy_all
+# FeatureJob.destroy_all
+# Company.destroy_all
+# Feature.destroy_all
+# User.destroy_all
+# Prefecture.destroy_all
+
+
 
 
