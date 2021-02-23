@@ -7,7 +7,7 @@ module Api
         ActiveRecord::Base.transaction do
           user = User.find_by(email: params[:email]) || User.create!(username: params[:username], email: params[:email], tel: params[:tel])
 
-          return render json: {}, status: :not_acceptable if Application.where(user_id: user.id, job_id: params[:job_id])
+          return render json: {}, status: :not_acceptable if Application.where(user_id: user.id, job_id: params[:job_id]).exists?
 
           application = Application.new(user_id: user.id, job_id: params[:job_id])
 

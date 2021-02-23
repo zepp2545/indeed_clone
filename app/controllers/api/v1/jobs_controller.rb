@@ -9,13 +9,18 @@ module Api
                           .page(params[:page] ||= 1)
                           .per(10)
                           .preload(:features, :company, :prefecture)
-        render json: jobs, each_serializer: JobSerializer
+        jobs_count = jobs_search.count
+        
+        render json: {
+          jobs: ActiveModel::Serializer::CollectionSerializer.new(jobs, each_serializer: JobSerializer),
+          count: jobs_count
+        }
       end
 
       private
 
       def jobs_params
-        params.permit(JobsSearch::ARRAY_FIELDS)
+        params.permit(*JobsSearch::ARRAY_FIELDS)
       end
 
       def wait

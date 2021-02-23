@@ -4,4 +4,6 @@ class JobSerializer < ActiveModel::Serializer
   has_many :features, serializer: FeatureSerializer
   belongs_to :company, serializer: CompanySerializer
   belongs_to :prefecture, serializer: PrefectureSerializer
+
 end
+
