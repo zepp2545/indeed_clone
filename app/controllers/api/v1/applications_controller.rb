@@ -1,7 +1,6 @@
 module Api
   module V1
     class ApplicationsController < ApplicationController
-      before_action :wait
 
       def create
         ActiveRecord::Base.transaction do
@@ -17,12 +16,6 @@ module Api
             render json: { error: "応募に失敗しました。" }, status: :internal_server_error
           end
         end  
-      end
-
-      private
-
-      def wait
-        sleep 1
       end
 
     end
