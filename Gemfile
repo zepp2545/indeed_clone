@@ -9,6 +9,7 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'active_model_serializers'
 gem 'rack-cors'
+gem 'kaminari'
 
 
 group :development, :test do

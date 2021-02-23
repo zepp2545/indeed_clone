@@ -5,7 +5,10 @@ module Api
 
       def search
         jobs_search = JobsSearch.new(jobs_params)
-        jobs = jobs_search.search.preload(:features, :company, :prefecture)
+        jobs = jobs_search.search
+                          .page(params[:page] ||= 1)
+                          .per(10)
+                          .preload(:features, :company, :prefecture)
         render json: jobs, each_serializer: JobSerializer
       end
 
