@@ -17,6 +17,11 @@ module Api
         }
       end
 
+      def show
+        job = Job.find(params[:id])
+        render json: job, serializer: JobSerializer
+      end
+
       private
 
       def jobs_params
