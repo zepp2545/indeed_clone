@@ -1,7 +1,6 @@
 module Api
   module V1
     class JobsController < ApplicationController
-      before_action :wait
 
       def search
         jobs_search = JobsSearch.new(jobs_params)
@@ -28,9 +27,6 @@ module Api
         params.permit(*JobsSearch::ARRAY_FIELDS)
       end
 
-      def wait
-        sleep 1
-      end
     end
   end
 end
